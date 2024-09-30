@@ -25,11 +25,44 @@ void mostafa2();
 void mostafa3();
 void mostafa4();
 
-void walid1();
-void walid2();
+vector<string> split(string sentence, string deli);
+static void binaryPrint(int n);
 void walid3();
 void walid4();
 
-int main(){
+int main()
+{
+
     return 0;
+}
+
+vector<string> split(string sentence, string deli)
+{
+    vector<string> res;
+    int start;
+    string sub;
+    while (sentence.find(deli) != string::npos)
+    {
+        start = sentence.find(deli);
+        sub = sentence.substr(0, start);
+        res.push_back(sub);
+        sentence.erase(0, start + deli.length());
+    }
+    res.push_back(sentence);
+    return res;
+}
+
+void binaryPrint(int n)
+{
+    if(n==0){
+        cout << 0 << endl;
+        return;
+    }
+    else{
+        if(n/2!=0){
+            binaryPrint(n / 2);
+        }
+        cout << n % 2;
+    }
+
 }
