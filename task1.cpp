@@ -1,5 +1,7 @@
 #include <iostream>
+#include <iomanip>
 #include <fstream>
+#include <limits>
 #include <string>
 #include <unordered_map>
 #include <sstream>
@@ -18,7 +20,7 @@ void dominos();
 void Bias();
 
 void inclusive_speech_processor ();
-void Top_Ten_Players();
+void mostafa2();
 void mostafa3();
 void mostafa4();
 
