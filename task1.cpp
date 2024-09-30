@@ -20,9 +20,10 @@ void dominos();
 void Bias();
 
 void inclusive_speech_processor ();
-void mostafa2();
-void mostafa3();
-void mostafa4();
+void Top_Ten_Players();
+void Add_Player ( vector < pair <string,int> >& Players_List , string player_name, int player_score);
+void Print_Top_10 (const vector < pair <string,int> >& Players_List);
+void Find_Player_Name (const vector < pair <string,int> >& Players_List , string player_name);
 
 vector<string> split(string sentence, string deli);
 void binaryPrint(int n);
