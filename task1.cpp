@@ -19,20 +19,124 @@ void Sieve();
 void dominos();
 void Bias();
 
-void inclusive_speech_processor ();
-void Top_Ten_Players();
-void Add_Player ( vector < pair <string,int> >& Players_List , string player_name, int player_score);
-void Print_Top_10 (const vector < pair <string,int> >& Players_List);
-void Find_Player_Name (const vector < pair <string,int> >& Players_List , string player_name);
+void inclusive_speech_processor();
+void Add_Player(vector<pair<string, int>> &Players_List, string player_name, int player_score);
+void Print_Top_10(const vector<pair<string, int>> &Players_List);
+void Find_Player_Name(const vector<pair<string, int>> &Players_List, string player_name);
 
-vector<string> split(string sentence, string deli);
+void split(string sentence, string deli);
 void binaryPrint(int n);
 static bool bears(int n);
 void phisshing_emails();
 
+void menu()
+{
+    string choice;
+    cout << "Do you wanna solve some problem (Yes or no): ";
+    cin >> choice;
+    for (char &ch : choice)
+    {
+        ch = tolower(ch);
+    }
+    if (!(choice == "yes" || choice == "no"))
+    {
+        cout << "Please, Follow the instructions." << endl;
+        menu();
+    }
+    else if (choice == "no")
+    {
+        cout << "Thanks for using our app." << endl;
+        return;
+    }
+    else
+    {
+        cout << "Choose a problem from 1 to 12 : ";
+        int inp;
+        cin >> inp;
+        if (inp > 12 || inp < 1)
+            menu();
+        else
+        {
+            if (inp == 1){
+                sentence();
+                cout << endl;
+                menu();
+            }
+            else if (inp == 2){
+                inclusive_speech_processor();
+                cout << endl;
+                menu();
+            }
+            else if (inp == 3)
+            {
+                string sentence, deli;
+                cout << "Enter your sentence you wanna split it: ";
+                getline(cin, sentence);
+                cin.ignore();
+                cout << "Now Enter your delimiter: ";
+                getline(cin,deli);
+                cin.ignore();
+                split(sentence, deli);
+                cout << endl;
+                menu();
+            }
+            else if (inp == 4){
+                Sieve();
+                cout << endl;
+                menu();
+            }
+            else if (inp == 5){
+                //Add_Player();
+                cout << endl;
+                menu();
+            }
+            else if (inp == 6)
+            {
+                int n;
+                cout << "Enetr a number to convert it into a binery format: ";
+                cin >> n;
+                binaryPrint(n);
+                cout << endl<<endl;
+                menu();
+            }
+            else if (inp == 7){
+                dominos();
+                menu();
+            }
+            else if (inp == 8){
+                //Print_Top_10();
+                menu();
+            }
+            else if (inp == 9)
+            {
+                int n;
+                cout << "Please, Enter number of bears: ";
+                cin >> n;
+                cout << (bears(n) ? "True" : "Flase") << endl;
+                menu();
+            }
+            else if (inp == 10)
+            {
+                Bias();
+                menu();
+            }
+            else if (inp == 11)
+            {
+                //Find_Player_Name();
+                menu();
+            }
+            else if (inp == 12)
+            {
+                phisshing_emails();
+                menu();
+            }
+        }
+    }
+}
+
 int main()
 {
-    phisshing_emails();
+    menu();
     return 0;
 }
 
@@ -169,20 +273,20 @@ void Bias()
 
 // ================================== WALEED ==============================================
 
-vector<string> split(string sentence, string deli)
+void split(string sentence, string deli)
 {
-    vector<string> res;
+    string res="";
     int start;
     string sub;
     while (sentence.find(deli) != string::npos)
     {
         start = sentence.find(deli);
         sub = sentence.substr(0, start);
-        res.push_back(sub);
+        res+=(sub+" ");
         sentence.erase(0, start + deli.length());
     }
-    res.push_back(sentence);
-    return res;
+    res+=sentence;
+    cout << res << endl;
 }
 
 void binaryPrint(int n)
@@ -349,40 +453,46 @@ void inclusive_speech_processor()
     cout << inclusive_speech << endl; // Output the modified sentence.
 }
 
- //                                        *** Problem 5 ***
+//                                        *** Problem 5 ***
 
-void Top_Ten_Players(){
+void Top_Ten_Players()
+{
 
-    vector < pair <string,int> > Players_List (10) ;
+    vector<pair<string, int>> Players_List(10);
 
-    while (true) {
+    while (true)
+    {
 
         cout << "Please, choose an operation!\n   (A) Add a new player and score.\n   (B) Print the top 10 names and scores.\n   (C) Know player score.\n   (D) Exit." << endl;
         cout << "Enter wanted operation's character:";
         string choice;
         cin >> choice;
 
-        if (choice == "A" || choice == "a") {
+        if (choice == "A" || choice == "a")
+        {
             string player_name;
             int player_score;
 
             cout << "Please, enter player's name:";
             cin >> player_name;
 
-            while (true) {
+            while (true)
+            {
                 cout << "Please, enter player's score:";
 
-                try {
+                try
+                {
                     cin >> player_score;
                     cout << endl;
                     // Check if more than one character was entered
-                    if (cin.fail() || cin.peek() != '\n') {
+                    if (cin.fail() || cin.peek() != '\n')
+                    {
                         throw invalid_argument("Input is not a valid integer!");
                     }
                     break;
-
                 }
-                catch (const invalid_argument &e) {
+                catch (const invalid_argument &e)
+                {
                     // Clear the input buffer and reset cin state
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -391,88 +501,93 @@ void Top_Ten_Players(){
                 cout << endl;
             }
 
-            Add_Player( Players_List, player_name , player_score);
-
+            Add_Player(Players_List, player_name, player_score);
         }
 
-        else if (choice == "B" || choice == "b") {
+        else if (choice == "B" || choice == "b")
+        {
 
-            Print_Top_10( Players_List);
-
+            Print_Top_10(Players_List);
         }
 
-        else if (choice == "C" || choice == "c") {
+        else if (choice == "C" || choice == "c")
+        {
 
             string player_name;
             cout << "Please, enter player's name:";
             cin >> player_name;
-            Find_Player_Name(Players_List , player_name);
-
+            Find_Player_Name(Players_List, player_name);
         }
 
-        else if (choice == "D" || choice == "d") {
+        else if (choice == "D" || choice == "d")
+        {
             cout << "I hope you have a great day." << endl;
             break;
         }
 
-        else {
+        else
+        {
             cout << "Please, Enter a valid choice!" << endl;
         }
-
     }
-
 }
 
+void Add_Player(vector<pair<string, int>> &Players_List, string player_name, int player_score)
+{
 
-void Add_Player ( vector < pair <string,int> >& Players_List , string player_name, int player_score){
+    if (Players_List.back().first == "" && Players_List.back().second == 0)
+    {
 
-    if ( Players_List.back().first == "" && Players_List.back().second == 0){
-
-        Players_List.push_back( make_pair(player_name , player_score) );
-        sort(Players_List.rbegin() , Players_List.rend());
-
+        Players_List.push_back(make_pair(player_name, player_score));
+        sort(Players_List.rbegin(), Players_List.rend());
     }
 
-    else {
+    else
+    {
 
-        if (player_score > Players_List.back().second){
+        if (player_score > Players_List.back().second)
+        {
 
             Players_List.back().first = player_name;
             Players_List.back().second = player_score;
-            sort(Players_List.rbegin() , Players_List.rend());
-
+            sort(Players_List.rbegin(), Players_List.rend());
         }
         // No need to sort if the score is not added to the top 10.
     }
-
 }
 
-void Print_Top_10 (const vector < pair <string,int> >& Players_List){
+void Print_Top_10(const vector<pair<string, int>> &Players_List)
+{
 
     cout << "=========================\n";
     cout << setw(10) << left << "Player" << " | " << setw(10) << right << "Score" << endl;
     cout << "=========================\n";
     // Loop through the vector and print each player's name and score with a vertical line
 
-    for (int i = 0; i < 10 ; ++i) {
+    for (int i = 0; i < 10; ++i)
+    {
 
         cout << setw(10) << left << Players_List[i].first << " | "
              << setw(10) << right << Players_List[i].second << endl;
-
     }
 }
 
-void Find_Player_Name (const vector < pair <string,int> >& Players_List , string player_name){
+void Find_Player_Name(const vector<pair<string, int>> &Players_List, string player_name)
+{
 
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 10; ++i)
+    {
 
-        if (player_name == Players_List[i].first ){
+        if (player_name == Players_List[i].first)
+        {
 
-            cout << player_name << "'s score is: " << Players_List[i].second << endl << endl;
+            cout << player_name << "'s score is: " << Players_List[i].second << endl
+                 << endl;
             break;
         }
 
-        if (i == 9){
+        if (i == 9)
+        {
 
             cout << "Sorry, this player's name isn't on the top 10!" << endl;
         }
