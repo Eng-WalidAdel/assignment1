@@ -26,12 +26,13 @@ void mostafa3();
 void mostafa4();
 
 vector<string> split(string sentence, string deli);
-static void binaryPrint(int n);
-void walid3();
+void binaryPrint(int n);
+static bool bears(int n);
 void walid4();
 
 int main()
 {
+    cout << ((bears(41)) ? "true":"false");
 
     return 0;
 }
@@ -54,15 +55,48 @@ vector<string> split(string sentence, string deli)
 
 void binaryPrint(int n)
 {
-    if(n==0){
+    if (n == 0)
+    {
         cout << 0 << endl;
         return;
     }
-    else{
-        if(n/2!=0){
+    else
+    {
+        if (n / 2 != 0)
+        {
             binaryPrint(n / 2);
         }
         cout << n % 2;
     }
+}
 
+static bool bears(int n)
+{
+    if (n < 42)
+    {
+        return false;
+    }
+    else if (n == 42)
+    {
+        return true;
+    }
+    else
+    {
+        if (n % 5 == 0)
+        {
+            if (bears(n - 42))
+                return true;
+        }
+        if (n % 2 == 0)
+        {
+            if (bears(n / 2))
+                return true;
+        }
+        if ((n % 3 == 0) || (n % 4 == 0))
+        {
+            if (((n % 10) * (n % 100)) >0 && bears(n - ((n % 10) * ((n % 100)/10))))
+                return true;
+        }
+    }
+    return false;
 }
