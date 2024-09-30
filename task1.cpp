@@ -11,9 +11,10 @@ void dominos();
 void Bias();
 
 void inclusive_speech_processor ();
-void mostafa2();
-void mostafa3();
-void mostafa4();
+void Top_Ten_Players();
+void Print_Top_10 (const vector < pair <string,int> >& Players_List);;
+void Find_Player_Name (const vector < pair <string,int> >& Players_List , string player_name);
+void Add_Player ( vector < pair <string,int> >& Players_List , string player_name, int player_score);
 
 vector<string> split(string sentence, string deli);
 void binaryPrint(int n);
@@ -207,7 +208,10 @@ static bool bears(int n)
     }
     return false;
 }
+
 // =========================== Mostafa ==========================================
+
+//                                *** Problem 2 ***
 
 void inclusive_speech_processor (){
 
@@ -273,4 +277,134 @@ void inclusive_speech_processor (){
     }
 
     cout << inclusive_speech << endl; // Output the modified sentence.
+}
+
+ //                                        *** Problem 5 ***
+
+void Top_Ten_Players(){
+
+    vector < pair <string,int> > Players_List (10) ;
+
+    while (true) {
+
+        cout << "Please, choose an operation!\n   (A) Add a new player and score.\n   (B) Print the top 10 names and scores.\n   (C) Know player score.\n   (D) Exit." << endl;
+        cout << "Enter wanted operation's character:";
+        string choice;
+        cin >> choice;
+
+        if (choice == "A" || choice == "a") {
+            string player_name;
+            int player_score;
+
+            cout << "Please, enter player's name:";
+            cin >> player_name;
+
+            while (true) {
+                cout << "Please, enter player's score:";
+
+                try {
+                    cin >> player_score;
+                    cout << endl;
+                    // Check if more than one character was entered
+                    if (cin.fail() || cin.peek() != '\n') {
+                        throw invalid_argument("Input is not a valid integer!");
+                    }
+                    break;
+
+                }
+                catch (const invalid_argument &e) {
+                    // Clear the input buffer and reset cin state
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << e.what() << " Please try again.\n";
+                }
+                cout << endl;
+            }
+
+            Add_Player( Players_List, player_name , player_score);
+
+        }
+
+        else if (choice == "B" || choice == "b") {
+
+            Print_Top_10( Players_List);
+
+        }
+
+        else if (choice == "C" || choice == "c") {
+
+            string player_name;
+            cout << "Please, enter player's name:";
+            cin >> player_name;
+            Find_Player_Name(Players_List , player_name);
+
+        }
+
+        else if (choice == "D" || choice == "d") {
+            cout << "I hope you have a great day." << endl;
+            break;
+        }
+
+        else {
+            cout << "Please, Enter a valid choice!" << endl;
+        }
+
+    }
+
+}
+
+
+void Add_Player ( vector < pair <string,int> >& Players_List , string player_name, int player_score){
+
+    if ( Players_List.back().first == "" && Players_List.back().second == 0){
+
+        Players_List.push_back( make_pair(player_name , player_score) );
+        sort(Players_List.rbegin() , Players_List.rend());
+
+    }
+
+    else {
+
+        if (player_score > Players_List.back().second){
+
+            Players_List.back().first = player_name;
+            Players_List.back().second = player_score;
+            sort(Players_List.rbegin() , Players_List.rend());
+
+        }
+        // No need to sort if the score is not added to the top 10.
+    }
+
+}
+
+void Print_Top_10 (const vector < pair <string,int> >& Players_List){
+
+    cout << "=========================\n";
+    cout << setw(10) << left << "Player" << " | " << setw(10) << right << "Score" << endl;
+    cout << "=========================\n";
+    // Loop through the vector and print each player's name and score with a vertical line
+
+    for (int i = 0; i < 10 ; ++i) {
+
+        cout << setw(10) << left << Players_List[i].first << " | "
+             << setw(10) << right << Players_List[i].second << endl;
+
+    }
+}
+
+void Find_Player_Name (const vector < pair <string,int> >& Players_List , string player_name){
+
+    for (int i = 0; i < 10; ++i) {
+
+        if (player_name == Players_List[i].first ){
+
+            cout << player_name << "'s score is: " << Players_List[i].second << endl << endl;
+            break;
+        }
+
+        if (i == 9){
+
+            cout << "Sorry, this player's name isn't on the top 10!" << endl;
+        }
+    }
 }
