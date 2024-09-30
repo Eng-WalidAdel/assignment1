@@ -229,6 +229,42 @@ static bool bears(int n)
     }
     return false;
 }
+void phisshing_emails()
+{
+    unordered_map<string, int> phishing = {{"secure", 2}, {"transaction", 2}, {"login", 2}, {"credit card", 3}, {"identity", 2}, {"update", 2}, {"security alert", 3}, {"bank", 1}, {"invoice", 2}, {"winner", 3}, {"verify your identity", 3}, {"confirm", 2}, {"refund", 2}, {"limited time", 2}, {"offer", 2}, {"lottery", 3}, {"free", 2}, {"urgent", 3}, {"password", 3}, {"reset", 2}, {"click here", 3}, {"verify", 3}, {"account", 2}, {"suspended", 3}, {"limited", 2}, {"social security", 3}, {"prize", 3}, {"you have won", 3}, {"claim", 3}};
+    int totalpoints = 0;
+    map<string, int> shared_words;
+    string filename;
+    cout << "PLease, Enter a file name: ";
+    cin >> filename;
+    ifstream file(filename);
+    string line;
+    while (getline(file, line))
+    {
+        for (char &ch : line)
+        {
+            ch = tolower(ch);
+        }
+        for (auto it = phishing.begin(); it != phishing.end(); it++)
+        {
+            short pos = line.find(it->first);
+            while (pos != string::npos)
+            {
+                shared_words[it->first]++;
+                totalpoints += it->second;
+                pos = line.find(it->first, pos + it->first.length());
+            }
+        }
+    }
+    file.close();
+    cout << "The results of the scanner: ";
+    for (auto it = shared_words.begin(); it != shared_words.end(); it++)
+    {
+        cout << "phisshing word: [ " << it->first << " ] appeared ( " << it->second << " ) times in that email." << endl;
+    }
+    cout << endl
+         << "Total points of phishing words in this email: " << totalpoints << endl;
+}
 // =========================== Mostafa ==========================================
 
 //                                *** Problem 2 ***
