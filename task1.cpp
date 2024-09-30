@@ -18,7 +18,7 @@ void dominos();
 void Bias();
 
 void inclusive_speech_processor ();
-void mostafa2();
+void Top_Ten_Players();
 void mostafa3();
 void mostafa4();
 
