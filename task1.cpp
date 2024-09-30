@@ -10,7 +10,7 @@ void Sieve();
 void dominos();
 void Bias();
 
-void mostafa1();
+void inclusive_speech_processor ();
 void mostafa2();
 void mostafa3();
 void mostafa4();
@@ -27,6 +27,7 @@ int main()
 }
 
 // ================================ GAMAL =======================================
+
 void sentence() {
     string ans , s;
     getline(cin , s);
@@ -140,7 +141,9 @@ void Bias()
     }
 //    cout << cnt << '\n';
 }
+
 // ================================== WALEAD ==============================================
+
 vector<string> split(string sentence, string deli)
 {
     vector<string> res;
@@ -169,5 +172,72 @@ void binaryPrint(int n)
         }
         cout << n % 2;
     }
+
+}
 // =========================== Mostafa ==========================================
+
+void inclusive_speech_processor (){
+
+    string sentence , word , inclusive_speech;
+    // 'word' holds each word being processed; 'inclusive_speech' stores the modified sentence.
+
+    getline(cin, sentence); // Read the input sentence from the user.
+
+
+    // Loop through each character in the input sentence.
+    for (char letter : sentence){
+
+        // Check if the current character is a separator (punctuation or space).
+        if ( letter == ' ' || letter == '?' || letter == ',' || letter == '.' ||
+             letter == ';' || letter == ':' || letter == '!' || letter == '-' ||
+             letter == '"' || letter == '/' || letter == '(' || letter == ')' ){
+
+            // Check if the current word is a gender-specific pronoun and replace it.
+            if ( word == "he" || word == "she" ){
+                inclusive_speech += "he or she"; // Replace "he" or "she" with "he or she".
+            }
+
+            else if ( word == "He" || word == "She" ){
+                inclusive_speech += "He or She"; // Replace "He" or "She" with "He or She".
+            }
+
+            else if ( word == "him" || word == "her" ){
+                inclusive_speech += "him or her"; // Replace "him" or "her" with "him or her".
+            }
+
+            else if ( word == "Him" || word == "Her" ){
+                inclusive_speech += "Him or Her"; // Replace "Him" or "Her" with "Him or Her".
+            }
+
+            else if ( word == "his" || word == "hers" ){
+                inclusive_speech += "his or hers"; // Replace "his" or "hers" with "his or hers".
+            }
+
+            else if ( word == "His" || word == "Hers" ){
+                inclusive_speech += "His or Hers"; // Replace "His" or "Hers" with "His or Hers".
+            }
+
+            else if ( word == "himself" || word == "herself" ){
+                // Replace "himself" or "herself" with "himself or herself".
+                // Note: It's assumed "himself" or "herself" won't start a sentence.
+                inclusive_speech += "himself or herself";
+            }
+
+            else {
+                // If the word is not a gender-specific pronoun, add it to the result unchanged.
+                inclusive_speech += word;
+            }
+
+            // Add the punctuation or space (the current letter) to the result.
+            inclusive_speech += letter;
+            word.clear(); // Clear the current word to start building the next word.
+        }
+
+        else {
+            // If the current character is not punctuation or a space, it's part of a word.
+            word += letter; // Add the character to the current word.
+        }
+    }
+
+    cout << inclusive_speech << endl; // Output the modified sentence.
 }
