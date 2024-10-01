@@ -24,7 +24,7 @@ void Add_Player(vector<pair<string, int>> &Players_List, string player_name, int
 void Print_Top_10(const vector<pair<string, int>> &Players_List);
 void Find_Player_Name(const vector<pair<string, int>> &Players_List, string player_name);
 
-void split(string sentence, string deli);
+void split();
 void binaryPrint(int n);
 static bool bears(int n);
 void phisshing_emails();
@@ -69,14 +69,7 @@ void menu()
             }
             else if (inp == 3)
             {
-                string sentence, deli;
-                cout << "Enter your sentence you wanna split it: ";
-                getline(cin, sentence);
-                cin.ignore();
-                cout << "Now Enter your delimiter: ";
-                getline(cin,deli);
-                cin.ignore();
-                split(sentence, deli);
+                split();
                 cout << endl;
                 menu();
             }
@@ -136,6 +129,7 @@ void menu()
 
 int main()
 {
+    split();
     menu();
     return 0;
 }
@@ -273,20 +267,29 @@ void Bias()
 
 // ================================== WALEED ==============================================
 
-void split(string sentence, string deli)
+void split()
 {
-    string res="";
+    string sentence, deli;
+    cout << "Enter your sentence you wanna split it: ";
+    getline(cin, sentence);
+    cout << "Now Enter your delimiter: ";
+    getline(cin, deli);
+    vector<string> res;
     int start;
     string sub;
     while (sentence.find(deli) != string::npos)
     {
         start = sentence.find(deli);
         sub = sentence.substr(0, start);
-        res+=(sub+" ");
+        res.push_back(sub);
         sentence.erase(0, start + deli.length());
     }
-    res+=sentence;
-    cout << res << endl;
+    res.push_back(sentence);
+    for (int i = 0; i < res.size(); i++)
+    {
+        cout << res[i] << " ";
+    }
+    cout << endl;
 }
 
 void binaryPrint(int n)
