@@ -23,6 +23,7 @@ void inclusive_speech_processor();
 void Add_Player(vector<pair<string, int>> &Players_List, string player_name, int player_score);
 void Print_Top_10(const vector<pair<string, int>> &Players_List);
 void Find_Player_Name(const vector<pair<string, int>> &Players_List, string player_name);
+void Top_Ten_Players();
 
 void split();
 void binaryPrint(int n);
@@ -79,7 +80,7 @@ void menu()
                 menu();
             }
             else if (inp == 5){
-                //Add_Player();
+                Top_Ten_Players();
                 cout << endl;
                 menu();
             }
@@ -97,7 +98,6 @@ void menu()
                 menu();
             }
             else if (inp == 8){
-                //Print_Top_10();
                 menu();
             }
             else if (inp == 9)
@@ -115,7 +115,6 @@ void menu()
             }
             else if (inp == 11)
             {
-                //Find_Player_Name();
                 menu();
             }
             else if (inp == 12)
@@ -129,7 +128,6 @@ void menu()
 
 int main()
 {
-    split();
     menu();
     return 0;
 }
@@ -478,7 +476,6 @@ void Top_Ten_Players()
 
             cout << "Please, enter player's name:";
             cin >> player_name;
-
             while (true)
             {
                 cout << "Please, enter player's score:";
