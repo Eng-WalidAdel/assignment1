@@ -269,7 +269,8 @@ void split()
 {
     string sentence, deli;
     cout << "Enter your sentence you wanna split it: ";
-    getline(cin, sentence);
+    cin.ignore();
+    getline(cin, sentence,'\n');
     cout << "Now Enter your delimiter: ";
     getline(cin, deli);
     vector<string> res;
@@ -382,8 +383,15 @@ void inclusive_speech_processor()
 
     string sentence, word, inclusive_speech;
     // 'word' holds each word being processed; 'inclusive_speech' stores the modified sentence.
+    cout << "PLease, Enter the sentance you want to check: ";
+    cin.ignore();
+    getline(cin, sentence, '\n'); // Read the input sentence from the user.
 
-    getline(cin, sentence); // Read the input sentence from the user.
+    while(sentence[sentence.length()-1]!='.'){
+        cout << "Please, End your sentance with a full stop (.): ";
+        cin.clear();
+        getline(cin, sentence, '\n'); // Read the input sentence from the user.
+    }
 
     // Loop through each character in the input sentence.
     for (char letter : sentence)
@@ -475,7 +483,8 @@ void Top_Ten_Players()
             int player_score;
 
             cout << "Please, enter player's name:";
-            cin >> player_name;
+            cin.ignore();
+            getline(cin, player_name ,'\n');
             while (true)
             {
                 cout << "Please, enter player's score:";
@@ -515,7 +524,8 @@ void Top_Ten_Players()
 
             string player_name;
             cout << "Please, enter player's name:";
-            cin >> player_name;
+            cin.ignore();
+            getline(cin, player_name , '\n');
             Find_Player_Name(Players_List, player_name);
         }
 
@@ -559,16 +569,16 @@ void Add_Player(vector<pair<string, int>> &Players_List, string player_name, int
 void Print_Top_10(const vector<pair<string, int>> &Players_List)
 {
 
-    cout << "=========================\n";
-    cout << setw(10) << left << "Player" << " | " << setw(10) << right << "Score" << endl;
-    cout << "=========================\n";
+    cout << "=================================\n";
+    cout << setw(15) << left << "Player" << " | " << setw(15) << right << "Score" << endl;
+    cout << "=================================\n";
     // Loop through the vector and print each player's name and score with a vertical line
 
     for (int i = 0; i < 10; ++i)
     {
 
-        cout << setw(10) << left << Players_List[i].first << " | "
-             << setw(10) << right << Players_List[i].second << endl;
+        cout << setw(15) << left << Players_List[i].first << " | "
+             << setw(15) << right << Players_List[i].second << endl;
     }
 }
 
