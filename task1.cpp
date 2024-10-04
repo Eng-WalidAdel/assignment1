@@ -340,7 +340,7 @@ static bool bears(int n)
 }
 void phisshing_emails()
 {
-    unordered_map<string, int> phishing = {{"secure", 2}, {"transaction", 2}, {"login", 2}, {"credit card", 3}, {"identity", 2}, {"update", 2}, {"security alert", 3}, {"bank", 1}, {"invoice", 2}, {"winner", 3}, {"verify your identity", 3}, {"confirm", 2}, {"refund", 2}, {"limited time", 2}, {"offer", 2}, {"lottery", 3}, {"free", 2}, {"urgent", 3}, {"password", 3}, {"reset", 2}, {"click here", 3}, {"verify", 3}, {"account", 2}, {"suspended", 3}, {"limited", 2}, {"social security", 3}, {"prize", 3}, {"you have won", 3}, {"claim", 3}};
+    map<string, int> phishing = {{"click here",3},{"offers",3},{"see",3},{"watch",2},{"send",1},{"secure", 2}, {"transaction", 2}, {"login", 2}, {"credit card", 3}, {"identity", 2}, {"update", 2}, {"security alert", 3}, {"bank", 1}, {"invoice", 2}, {"winner", 3}, {"verify your identity", 3}, {"confirm", 2}, {"refund", 2}, {"limited time", 2}, {"offer", 2}, {"lottery", 3}, {"free", 2}, {"urgent", 3}, {"password", 3}, {"reset", 2}, {"click here", 3}, {"verify", 3}, {"account", 2}, {"suspended", 3}, {"limited", 2}, {"social security", 3}, {"prize", 3}, {"you have won", 3}, {"claim", 3}};
     int totalpoints = 0;
     map<string, int> shared_words;
     string filename;
