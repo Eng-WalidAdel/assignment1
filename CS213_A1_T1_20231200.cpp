@@ -1,4 +1,5 @@
 /*
+
     Assignemnt (1) Task (1)
 
     Solved Problems: 3 , 6 , 9 , 12 problem
@@ -7,11 +8,7 @@
 
     ID: 20231200
 
-
-
-
 */
-
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -68,7 +65,7 @@ void menu()
         {
             cout << "Invalid input! Please, Follow the instructions." << endl
                  << endl;
-            cout << "You have some option from ( 1 : 5 )\n1) Split problem.\n2) Binary Print problem.\n3) Bears Problem.\n4) Phisshing e mails problem.\n5) Exit.\n\n Please, Enter your choice: ";
+            cout << "You have some option from ( 1 : 5 )\n1) Split problem.\n2) Binary Print problem.\n3) Bears Problem.\n4) Phisshing e mails problem.\n5) Exit.\n\nPlease, Enter your choice: ";
             // get user`s Choice again
             while (!(cin >> choice))
             {
@@ -250,7 +247,7 @@ void phisshing_emails()
     int totalpoints = 0;
     map<string, int> shared_words;
     string filename;
-    cout << "PLease, Enter a file name: ";
+    cout << "PLease, Enter a file name and if you don`t have a file Enter(ph.txt)file to see the output : ";
     cin >> filename;
     ifstream file(filename);
     string line;
