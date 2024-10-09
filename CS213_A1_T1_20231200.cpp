@@ -43,7 +43,8 @@ void menu()
 {
     while (true)
     { // A Welcome message
-        cout << endl <<"Welcome Ya user Ya Habibi!" << endl;
+        cout << endl
+             << "Welcome Ya user Ya Habibi!" << endl;
         cout << endl;
         cout << "In this mini program we just solve some problems to enjoy our time." << endl;
         cout << "You have some options from ( 1 : 5 )\n1) Split problem.\n2) Binary Print problem.\n3) Bears Problem.\n4) Phisshing e mails problem.\n5) Exit.\n\nPlease, Enter your choice: ";
@@ -61,7 +62,7 @@ void menu()
             cout << "Invalid input. Please enter an integer: ";
         }
         // check validity of the input
-        while (choice>5 || choice<1)
+        while (choice > 5 || choice < 1)
         {
             cout << "Invalid input! Please, Follow the instructions." << endl
                  << endl;
@@ -184,14 +185,15 @@ void split()
         start = sentence.find(deli);
         sub = sentence.substr(0, start);
         res.push_back(sub);
-        sentence.erase(0, start + deli.length());
+        sentence.erase(0, start + deli.length()); //"do re mi fa so la ti do"
     }
     res.push_back(sentence);
     for (int i = 0; i < res.size(); i++)
     {
         cout << res[i] << " ";
     }
-    cout << endl<<endl;
+    cout << endl
+         << endl;
 }
 
 void binary_print(int n)
@@ -249,7 +251,16 @@ void phisshing_emails()
     string filename;
     cout << "PLease, Enter a file name and if you don`t have a file Enter(ph.txt)file to see the output : ";
     cin >> filename;
+
     ifstream file(filename);
+    while (!file)
+    {
+        cout << "The file name isn't detected!" << endl;
+        cout << "Please, enter file's name again: ";
+        cin >> filename;
+        cout << endl;
+        file.open(filename, ios::in);
+    }
     string line;
     while (getline(file, line))
     {
@@ -259,7 +270,7 @@ void phisshing_emails()
         }
         for (auto it = phishing.begin(); it != phishing.end(); it++)
         {
-            short pos = line.find(it->first);
+            short pos = line.find(it->first); // ewewyg click here jhsef click here efwef
             while (pos != string::npos)
             {
                 shared_words[it->first]++;
