@@ -190,7 +190,7 @@ void split()
     res.push_back(sentence);
     for (int i = 0; i < res.size(); i++)
     {
-        cout << res[i] << " ";
+        cout <<'"'<< res[i] <<'"'<<" ";
     }
     cout << endl
          << endl;
